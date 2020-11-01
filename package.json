@@ -1,0 +1,52 @@
+{
+  "name": "questplus",
+  "version": "1.0.0",
+  "description": "QUEST+ implementation in JavaScript.",
+  "author": "Richard Höchenberger",
+  "repository": "hoechenberger/questplus.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build-mjs": "./node_modules/typescript/bin/tsc -d && mv dist/index.js dist/index.mjs",
+    "build-cjs": "./node_modules/typescript/bin/tsc -m commonjs",
+    "build": "npm run build-mjs && npm run build-cjs",
+    "start": "./node_modules/typescript/bin/tsc -w",
+    "test": "./node_modules/jest/bin/jest.js",
+    "lint": "./node_modules/tslint/bin/tslint tslint.json",
+    "test:watch": "./node_modules/jest/bin/jest.js --watchAll",
+    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "deploy-docs": "ts-node tools/gh-pages-publish",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "format": "./node_modules/tslint/bin/tslint --fix src/**/*.ts",
+    "prettier": "npx prettier --fix src/**/*.ts test/**/*.ts --write --single-quote",
+    "deploy": "npm run build && npm run test:prod && npm publish --access public"
+  },
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "bundleDependencies": [],
+  "deprecated": false,
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/parser": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
+    "@babel/types": "^7.12.1",
+    "@tensorflow/tfjs-node-gpu": "^2.7.0",
+    "@types/jest": "^26.0.15",
+    "babel-jest": "^26.6.1",
+    "jest": "^26.6.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.3",
+    "tslint": "^6.1.3",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^9.0.0",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^2.7.0"
+  }
+}
