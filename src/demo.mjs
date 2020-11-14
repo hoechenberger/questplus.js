@@ -19,7 +19,7 @@ let qp = qpInit(
     },
     // Possible responses (e.g. 0 – incorrect, 1 – correct)
     outcomeDomain: {
-      response: [1, 0]  // FIXME Revert
+      response: [1, 0]
     }
   }
 )
