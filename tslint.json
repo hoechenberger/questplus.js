@@ -1,7 +1,13 @@
 {
-  "extends": ["tslint:latest", "tslint-config-airbnb", "tslint-config-prettier"],
+  "extends": [
+    "tslint:latest",
+    "tslint-config-airbnb",
+    "tslint-config-prettier"
+  ],
   "linterOptions": {
-    "exclude": ["*.json", "**/*.json"]
+    "exclude": [
+      "*.json",
+      "**/*.json"
+    ]
   }
 }
-
