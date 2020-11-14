@@ -1,6 +1,6 @@
 {
   "name": "questplus",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "QUEST+ implementation in JavaScript.",
   "author": "Richard Höchenberger",
   "repository": "hoechenberger/questplus.js",
