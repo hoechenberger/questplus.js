@@ -1,4 +1,4 @@
-import { qpInit, qpPredict, qpUpdate, qpParamEstimate } from '../dist/index.js'
+import { qpInit, qpPredict, qpUpdate, qpParamEstimate, qpParamEstimateSd } from '../dist/index.js'
 
 // import { qpInit, qpPredict, qpUpdate, qpParamEstimate } from './questplus.js'
 
@@ -27,10 +27,12 @@ let qp = qpInit(
 // Which stimulus should we present next?
 console.log(qpPredict(qp).nextStim)
 // Inform QUEST+ about a response for a given stimulus.
+console.log(qpParamEstimateSd(qp))
 qp = qpUpdate(qp, { intensity: -1.5 }, { response: 1 })
 
 // Which stimulus should we present next?
 console.log(qpPredict(qp).nextStim)
+
 // // Response.
 // qp = qpUpdate(qp, { intensity: -3.5 }, { response: 0 })
 
@@ -44,6 +46,6 @@ console.log(qpPredict(qp).nextStim)
 
 // Let's just stop here and look at the estimated threshold value.
 console.log('Threshold estimate: ' + qpParamEstimate(qp))
-
+console.log(qpParamEstimateSd(qp))
 // Let's have a look at the updates QUEST+ data.
 // console.log(qp)

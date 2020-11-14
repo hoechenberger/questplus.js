@@ -167,8 +167,8 @@ export const qpParamEstimateSd = (
 ): number => {
   const thresholds = tf.tensor1d(qp.paramDomain.threshold)
   const probabilities = qp.posterior.squeeze()
-
-  const thresholdSd = tf.moments(thresholds.mul(probabilities)).variance.sqrt()
+  const thresholdMean = qpParamEstimate(qp)
+  const thresholdSd = (thresholds.sub(thresholdMean)).pow(2).mul(probabilities).sum()
   return thresholdSd.asScalar().dataSync()[0]
 }
 
