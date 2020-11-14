@@ -1,1 +1,3 @@
-export { qpInit, qpPredict, qpUpdate, qpParamEstimate } from './questplus'
+export {
+  qpInit, qpPredict, qpUpdate, qpParamEstimate, qpParamEstimateSd
+} from './questplus'

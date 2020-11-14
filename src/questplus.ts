@@ -77,6 +77,11 @@ export const qpInit = ({
   return qp
 }
 
+/**
+ * Query QUEST+ for the next stimulus to present.
+ * 
+ * @param qp The QUEST+ object.
+ */
 export const qpPredict = (
   qp: IQpObject
 ): IQpPrediction => {
@@ -109,6 +114,13 @@ export const qpPredict = (
   }
 }
 
+/**
+ * Inform QUEST+ about a new response.
+ * 
+ * @param qp The QUEST+ object.
+ * @param stim The presented stimulus.
+ * @param outcome The observed outcome / response.
+ */
 export const qpUpdate = (
   qp: IQpObject,
   stim: any,
@@ -130,6 +142,11 @@ export const qpUpdate = (
   return qp
 }
 
+/**
+ * The estimated psychometric function paramters.
+ * 
+ * @param The QUEST+ object. 
+ */
 export const qpParamEstimate = (
   qp: IQpObject
 ): number => {
@@ -138,6 +155,21 @@ export const qpParamEstimate = (
 
   const meanThreshold = thresholds.mul(probabilities).sum()
   return meanThreshold.asScalar().dataSync()[0]
+}
+
+/**
+ * Standard deviation of the estimated psychometric function paramters.
+ * 
+ * @param qp The QUEST+ object. 
+ */
+export const qpParamEstimateSd = (
+  qp: IQpObject
+): number => {
+  const thresholds = tf.tensor1d(qp.paramDomain.threshold)
+  const probabilities = qp.posterior.squeeze()
+
+  const thresholdSd = tf.moments(thresholds.mul(probabilities)).variance.sqrt()
+  return thresholdSd.asScalar().dataSync()[0]
 }
 
 export const _genLikelihoods = (
