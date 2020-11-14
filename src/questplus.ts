@@ -56,7 +56,7 @@ export const qpInit = ({
     ])
     prior = prior.div(prior.sum())
   } else if (Array.isArray(prior)) {
-    prior = tf.tensor(prior)
+    prior = tf.tensor(prior, [prior.length, 1, 1, 1]);
   }
   // TODO Check that prior has the correct shape.
 
