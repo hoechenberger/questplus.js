@@ -1,6 +1,7 @@
 import * as tf from '@tensorflow/tfjs'
 import '@tensorflow/tfjs-node'
 
+
 const meshgrid = (
   args: Array<tf.Tensor1D>,
   indexing: string = 'xy'
@@ -22,18 +23,14 @@ const meshgrid = (
     shapes = shapes.concat([x.size])
   })
 
-  // console.log(shapes)
   if (indexing === 'xy' && ndim > 1) {
     const shape_0 = [1, -1].concat(Array(ndim - 2).fill(1))
     const shape_1 = [-1, 1].concat(Array(ndim - 2).fill(1))
     output[0] = output[0].reshape(shape_0)
     output[1] = output[1].reshape(shape_1)
 
-    // [shapes[0], shapes[1]] = [shapes[1], shapes[0]]
     shapes = [shapes[1], shapes[0], ...shapes.slice(2)]
-    // console.log(shapes)
   }
-  // console.log(shapes)
 
   const multFact = tf.ones(shapes, output_dtype)
   let finalOutput: Array<tf.Tensor> = []

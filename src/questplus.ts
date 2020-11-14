@@ -29,6 +29,16 @@ interface IQpPrediction {
   nextStim: any
 }
 
+/**
+ * Create a QUEST+ object.
+ * 
+ * @param stimDomain Stimulus property domain.
+ * @param paramDomain Psychometric function parameter domain.
+ * @param outcomeDomain The outcome or response domain.
+ * @param prior Prior probabilities for the parameters.
+ * @param stimScale The scale of the stimulus parameters. Possible values are
+ * ``log10`` and``linear``.
+ */
 export const qpInit = ({
   stimDomain,
   paramDomain,
